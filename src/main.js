@@ -4,6 +4,8 @@ import Vue from 'vue'
 import Layout from './components/layout'
 import IndexPage from './pages/index'
 
+//引入自定义组件SlideShow
+import SlideShow from './components/SlideShow.vue'
 
 //router配置
 import VueRouter from 'vue-router'

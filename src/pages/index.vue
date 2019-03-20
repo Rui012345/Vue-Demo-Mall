@@ -11,11 +11,10 @@
                 <a :href="item.url">{{ item.name }}</a>
                 <span v-if="item.hot" class="hot-tag">hot</span>
               </li>
-            </ul> 
-          <div class="hr"></div>  
+            </ul>
+          <div class="hr"></div>
         </template>
       </div>
-  
       <div class="index-left-block lastest-news">
         <h3>猜你喜欢</h3>
         <ul>
@@ -23,11 +22,13 @@
             <a :href="like.url">{{ like.title }}</a>
             <span v-if="like.hot" class="hot-tag">hot</span>
           </li>
-        </ul>  
-      </div>   
+        </ul>
+      </div>
     </div>
     <div   class="index-right">
-      <div class="slide"></div>
+      <div class="slide">
+        <SlideShow :slides="slides"></SlideShow>
+      </div>
       <div class="index-board-list">
         <div class="index-board-item" v-for="(item,index) in boardList"
         :class="[{'line-last':index%2!==0},
@@ -36,35 +37,53 @@
             <h4>{{ item.title }}</h4>
             <p>{{ item.description }}</p>
             <div class="index-board-button">
-              <a href="" class="button">立即购买</a>
+              <a href="" class="button">点击进入</a>
             </div>
-          </div>   
+          </div>
         </div>
-      
-        
       </div>
-     
     </div>
-   
   </div>
 </template>
 
 <script>
+import SlideShow from '../components/SlideShow.vue'
 export default {
-  //组件创建完毕，生命周期created
-  created:function(){
-    this.$http.post('getList').then(
-      function(data){
-        console.log(data)
-
-    },function(err){
-        console.log(err)
-
-    })
+  components:{
+    SlideShow
   },
+  //组件创建完毕，生命周期created
+  //组件创建完毕，生命周期promise,this.$http.post为promise对象，请求成功回调，请求失败的回调
+  // created:function(){
+  //   this.$http.post('getList',{userId:13}).then(
+  //     function(data){
+  //       console.log(data)
+  //   },function(err){
+  //       console.log(err)
+  //
+  //   })
+  // },
+
   data(){
     // ['女上装','裙装/套装','裤装','女鞋']，['男士外套','男式T恤','男士衬衫','男士裤装']
     return{
+      slides:[
+        {
+          src:require('../assets/slide1.jpg'),
+          title:"男人帮特色",
+          href:'detail/ananly'
+        },
+        {
+          src:require('../assets/slide2.jpg'),
+          title:"女神养成计划",
+          href:'detail/ananlyss'
+        },
+        {
+          src:require('../assets/slide3.jpg'),
+          title:"有腔调的品味",
+          href:'detail/ananlyss'
+        }
+      ],
       boardList:[
       {
         title:"今日热卖",
@@ -72,7 +91,7 @@ export default {
         id:'hotproducts'
       },{
         title:"女神新衣",
-        description:"优雅并不是耀眼夺目，而是被人铭记。",
+        description:"优雅并不是耀眼夺目，而是被人铭记。优雅并不是耀眼夺目，而是被人铭记。优雅并不是耀眼夺目，而是被人铭记。",
         id:'lady'
       },{
         title:"男人帮",
@@ -148,7 +167,7 @@ export default {
         },
     }
   }
-    
+
   }
 
 }
@@ -166,7 +185,9 @@ export default {
 .index-left{
   width:20%;
   font-weight: bold;
-  background-color: #fff;
+  background-color: #000;
+  opacity: 0.82;
+  color:#fff;
 }
 .index-left-block{
   text-indent :20px;
@@ -181,8 +202,7 @@ export default {
   cursor: pointer;
 }
 h3{
-  background-color:#42b983;
-  color: #fff;
+  background-color:#1fdd88;
   padding: 5px 0px;
   letter-spacing:2px;
   font-weight :bold;
@@ -192,11 +212,10 @@ h4{
 }
 .index-left-block li a{
   text-decoration: none;
-  color: #333;
+  color: #fff;
 }
 .index-left li:hover{
-  color: #000;
-  background-color:#aaa;
+  background-color:#1fdd88;
   font-size:1.2em;
 }
 .hr{
@@ -215,7 +234,6 @@ h4{
 .slide{
   width: 100%;
   height: 400px;
-  border: 1px solid #f90;
   background-color:#fff;
 }
 .index-board-list{
@@ -246,8 +264,12 @@ h4{
 .index-board-item-inner{
   padding-left: 100px;
   padding-bottom: 20px;
+  width: 70%;
 }
 .index-board-item-inner h4,p{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   margin-left: 20px;
 }
 .line-last{
@@ -255,16 +277,19 @@ h4{
 }
 
 .button{
-  background-color:#42b983;
+  background-color:#1fdd88;
   letter-spacing: 2px;
   float: right;
   text-indent: 0;
   padding:5px 10px;
   text-decoration: none;
   color: #fff;
-  font-weight: bold;
   margin-right: 10px;
   cursor: pointer;
+  border-radius: 2px;
+}
+.button:hover{
+  box-shadow: 2px 2px 3px #aaa;
 }
 
 </style>

@@ -14,7 +14,7 @@
           </ul>
       </div>
       </div>
-     
+
     </div>
     <div class="app-content">
       <keep-alive></keep-alive>
@@ -23,7 +23,7 @@
     <div class="app-footer">
       <p>Vue Demo</p>
       <p>@ 2019 ruig01@163.com</p>
-    </div>  
+    </div>
   </div>
 </template>
 
@@ -44,7 +44,7 @@ blockquote, body, button, dd, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, hr
     padding: 0;
 }
 body, button, input, select, textarea {
-    font: 12px/1.5 tahoma,arial,"Hiragino Sans GB",宋体,sans-serif;
+    font: 14px/1.5 tahoma,arial,"Hiragino Sans GB",宋体,sans-serif;
 }
 
 .app-header{
@@ -88,6 +88,5 @@ body, button, input, select, textarea {
   text-align: center;
   padding-top: 50px;
   color: #fff;
-  font-size:14px;
 }
 </style>

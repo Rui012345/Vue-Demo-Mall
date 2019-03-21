@@ -1,21 +1,29 @@
 <!-- 布局 -->
 <template>
-  <div class="slide-show">
-    <div class="slide-img" v-for="item in slides">
-      <a href="" >
-        <img :src="item.src" alt="item.title">
-      </a>
-      <h3>{{ item.title }}</h3>
-    </div>
+  <div class="slide-show" @mouseover="clearInv" @mouseout="runInv">
+    <!-- v-for="item in slides" -->
+    <div class="slide-img" >
+      <a :href="slides[nowIndex].href" >
 
-    <ul class="slide-page">
-      <li>&lt;</li>
-      <li>
-        <a href="">1</a>
-        <a href="">2</a>
-        <a href="">3</a>
+        <!-- 动画 -->
+        <transition name="slide-trans">
+          <img v-if="isShow" :src="slides[nowIndex].src" alt="slides[nowIndex].title">
+        </transition>
+        <transition name="slide-trans-old">
+          <img v-if="!isShow" :src="slides[nowIndex].src" alt="slides[nowIndex].title">
+        </transition>
+
+
+      </a>
+    </div>
+    <h3>{{ slides[nowIndex].title }}</h3>
+
+    <ul class="slide-page" >
+      <li @click="goto(preIndex)">&lt;</li>
+      <li v-for="(item,index) in slides" @click="goto(index)">
+        <a href="" :class="{on:index == nowIndex}">{{index + 1}}</a>
       </li>
-      <li>&gt;</li>
+      <li @click="goto(nextIndex)">&gt;</li>
     </ul>
   </div>
 </template>
@@ -26,26 +34,95 @@ export default {
     slides:{
       type:Array,
       default:[]//初始值为空
+    },
+    inv:{//父级传递
+      type:Number,
+      default:1000
     }
   },
   data(){
     return{
-      msg:"SlideShow"
+      nowIndex:1,
+      isShow:true
+    }
+  },
+  computed:{
+    preIndex(){
+      if(this.nowIndex == 0){
+        return this.slides.length-1
+      }else{
+        return this.nowIndex - 1
+      }
+    },
+    nextIndex(){
+      if(this.nowIndex == this.slides.length-1){
+        return 0
+      }else{
+        return this.nowIndex + 1
+      }
+    }
+  },
+  methods:{
+    goto(index){
+      this.isShow = false
+      setTimeout(()=>{
+        this.isShow = true
+        this.nowIndex = index
+        //index传给父组件，实现交互
+        // this.$emit('onchange',index)
+        //
+      },10)
+    },
+    //幻灯片自动切换
+    runInv(){
+      this.invId = setInterval(()=>{
+        this.goto(this.nextIndex)
+      },this.inv)
+    },
+    clearInv(){
+      clearInterval(this.invId)
     }
   },
   mounted(){
-    console.log(this.slides)
+    this.runInv()
   }
 }
 </script>
 <style scoped>
+.slide-trans-enter-active{
+  transition: all 1s;
+}
+.slide-trans-enter{
+  transform: translateX(1200px);
+}
+.slide-trans-old-leave-active{
+    transition: all 1s;
+    transform: translateX(-1200px);
+}
+/* 淘宝css初始化 */
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button,
+  input, textarea, th, td { margin:0; padding:0; }
+  body, button, input, select, textarea { font:12px/1.5tahoma, arial, \5b8b\4f53; }
+  h1, h2, h3, h4, h5, h6{ font-size:100%; }
+  address, cite, dfn, em, var { font-style:normal; }
+  code, kbd, pre, samp { font-family:couriernew, courier, monospace; }
+  small{ font-size:12px; }
+  ul, ol { list-style:none; }
+  a { text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  sup { vertical-align:text-top; }
+  sub{ vertical-align:text-bottom; }
+  legend { color:#000; }
+  fieldset, img { border:0; }
+  button, input, select, textarea { font-size:100%; }
+  table { border-collapse:collapse; border-spacing:0; }
+
 
 .slide-show{
-  height: 414px;
+  height: 400px;
   width: 1200px;
   position: relative;
-  font: 12px/1.5 tahoma,arial,"Hiragino Sans GB",宋体,sans-serif;
-
+  overflow: hidden;
 }
 .slide-show h3{
   width: 100%;
@@ -67,7 +144,9 @@ export default {
   right: 15px;
   bottom: 0px;
   position: absolute;
-
+}
+.slide-page .on{
+  text-decoration: underline;
 }
 .slide-page li{
   list-style: none;
@@ -83,14 +162,8 @@ export default {
 
   display: block;
   float:left;
-  margin-right: 19px;
   color: #fff;
   text-decoration: none;
-}
-
-.slide-page li  a:nth-of-type(3){
-  /* 最后一个a的margin设为0,避免溢出 */
-  margin-right: 0px;
 }
 .slide-page li:hover{
   color: #1fdd88;

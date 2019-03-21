@@ -27,7 +27,8 @@
     </div>
     <div   class="index-right">
       <div class="slide">
-        <SlideShow :slides="slides"></SlideShow>
+        <!-- :slides="slides" -给slides传入什么，就是怎样的幻灯片，监听子组件onchange事件@onchange="doSomething"-->
+        <SlideShow :slides="slides" :inv="slideSpeed" ></SlideShow>
       </div>
       <div class="index-board-list">
         <div class="index-board-item" v-for="(item,index) in boardList"
@@ -49,24 +50,29 @@
 <script>
 import SlideShow from '../components/SlideShow.vue'
 export default {
-  components:{
+  components:{//引入子组件
     SlideShow
   },
   //组件创建完毕，生命周期created
   //组件创建完毕，生命周期promise,this.$http.post为promise对象，请求成功回调，请求失败的回调
-  // created:function(){
-  //   this.$http.post('getList',{userId:13}).then(
-  //     function(data){
-  //       console.log(data)
-  //   },function(err){
-  //       console.log(err)
-  //
-  //   })
+  created:function(){
+    this.$http.get('api/goods')
+    .then((res) => {
+      this.newsGoods = res.data
+    },(err) => {
+      console.log(err)
+    } )
+  },
+  // methods:{
+  //   doSomething(index){
+  //     //利用SlideShow子组件传来的参数，处理别的事情
+  //     console.log(index);
+  //   }
   // },
-
   data(){
     // ['女上装','裙装/套装','裤装','女鞋']，['男士外套','男式T恤','男士衬衫','男士裤装']
     return{
+      slideSpeed:2000,
       slides:[
         {
           src:require('../assets/slide1.jpg'),
@@ -116,8 +122,7 @@ export default {
       {
         title:"半身裙",
         url:""
-      },
-
+      }
       ],
       productList:{
         woman:{
@@ -167,15 +172,29 @@ export default {
         },
     }
   }
-
   }
 
 }
 </script>
 <style scoped>
-*{
-  font: 14px/1.5 tahoma,arial,"Hiragino Sans GB",宋体,sans-serif;
-}
+/* 淘宝css初始化 */
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button,
+  input, textarea, th, td { margin:0; padding:0; }
+  body, button, input, select, textarea { font:12px/1.5tahoma, arial, \5b8b\4f53; }
+  h1, h2, h3, h4, h5, h6{ font-size:100%; }
+  address, cite, dfn, em, var { font-style:normal; }
+  code, kbd, pre, samp { font-family:couriernew, courier, monospace; }
+  small{ font-size:12px; }
+  ul, ol { list-style:none; }
+  a { text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  sup { vertical-align:text-top; }
+  sub{ vertical-align:text-bottom; }
+  legend { color:#000; }
+  fieldset, img { border:0; }
+  button, input, select, textarea { font-size:100%; }
+  table { border-collapse:collapse; border-spacing:0; }
+
 .index-wrap{
   width:80%;
   margin:0px auto;
@@ -184,31 +203,27 @@ export default {
 }
 .index-left{
   width:20%;
-  font-weight: bold;
   background-color: #000;
   opacity: 0.82;
   color:#fff;
 }
 .index-left-block{
   text-indent :20px;
-
 }
 .index-left ul{
-  padding-left:20px;
+  padding: 10px 0px 10px 20px;
+
 }
 .index-left li{
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   list-style: none;
   cursor: pointer;
 }
 h3{
   background-color:#1fdd88;
-  padding: 5px 0px;
+  padding: 10px 0px;
   letter-spacing:2px;
-  font-weight :bold;
-}
-h4{
-   font-weight :bold;
+  margin-bottom: 10px;
 }
 .index-left-block li a{
   text-decoration: none;
@@ -216,10 +231,14 @@ h4{
 }
 .index-left li:hover{
   background-color:#1fdd88;
-  font-size:1.2em;
 }
 .hr{
-  border-bottom:1px solid #aaa;
+  border-bottom:1px solid #eee;
+  margin-bottom: 10px;
+}
+.hr:nth-last-child(1){
+  border:none;
+  margin-bottom:0px;
 }
 .hot-tag{
   background: red;
@@ -271,6 +290,7 @@ h4{
   white-space: nowrap;
   text-overflow: ellipsis;
   margin-left: 20px;
+  margin-top: 10px;
 }
 .line-last{
   margin-right: 0px;
@@ -280,10 +300,11 @@ h4{
   background-color:#1fdd88;
   letter-spacing: 2px;
   float: right;
-  text-indent: 0;
+  text-indent:0;
   padding:5px 10px;
   text-decoration: none;
   color: #fff;
+  margin-top:20px;
   margin-right: 10px;
   cursor: pointer;
   border-radius: 2px;

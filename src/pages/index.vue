@@ -56,12 +56,12 @@ export default {
   //组件创建完毕，生命周期created
   //组件创建完毕，生命周期promise,this.$http.post为promise对象，请求成功回调，请求失败的回调
   created:function(){
-    this.$http.get('api/goods')
-    .then((res) => {
-      this.newsGoods = res.data
+    this.$http.get('api/likesList')
+    .then((res) => {//箭头函数，this为当前代码环境下的this,而不是执行环境的this
+      this.likesList = res.data
     },(err) => {
-      console.log(err)
-    } )
+      console.log("this is an error")
+    })
   },
   // methods:{
   //   doSomething(index){
@@ -109,21 +109,21 @@ export default {
         id:'special'
       }
       ],
-      likesList:[
-      {
-        title:"针织衫",
-        url:""
-      },
-      {
-        title:"女式衬衫",
-        url:"",
-        hot:true
-      },
-      {
-        title:"半身裙",
-        url:""
-      }
-      ],
+      likesList:'',////!!!!!!!!!!!!
+      // likesList:[
+      // {
+      //   title:"针织衫",
+      //   url:""
+      // },
+      // {
+      //   title:"女式衬衫",
+      //   url:"",
+      // },
+      // {
+      //   title:"半身裙",
+      //   url:""
+      // }
+      // ],
       productList:{
         woman:{
           title:"女装",

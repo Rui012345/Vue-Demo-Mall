@@ -1,0 +1,19 @@
+{
+  "likesList":[
+    {
+      "title": "针织衫",
+      "url": "/sfjw/dfs",
+      "hot":false
+    },
+    {
+        "title": "蛋糕裙",
+        "url": "/sfjw/dfs",
+        "hot":true
+    },
+    {
+        "title": "百褶裙",
+        "url": "/sfjw/dfs",
+        "hot":true
+      }
+  ]
+}

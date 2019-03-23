@@ -4,7 +4,6 @@
     <!-- v-for="item in slides" -->
     <div class="slide-img" >
       <a :href="slides[nowIndex].href" >
-
         <!-- 动画 -->
         <transition name="slide-trans">
           <img v-if="isShow" :src="slides[nowIndex].src" alt="slides[nowIndex].title">
@@ -12,12 +11,9 @@
         <transition name="slide-trans-old">
           <img v-if="!isShow" :src="slides[nowIndex].src" alt="slides[nowIndex].title">
         </transition>
-
-
       </a>
     </div>
     <h3>{{ slides[nowIndex].title }}</h3>
-
     <ul class="slide-page" >
       <li @click="goto(preIndex)">&lt;</li>
       <li v-for="(item,index) in slides" @click="goto(index)">
@@ -27,6 +23,7 @@
     </ul>
   </div>
 </template>
+
 <script>
 export default {
   // props:子组件接受的什么属性

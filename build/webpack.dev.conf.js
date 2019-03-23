@@ -11,15 +11,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 
-///json-server
-const express = require('express')
-const app = express()//请求server
-var appData = require('../mock/goods.json')//加载本地数据文件
-var goods = appData.goods
-var apiRoutes = express.Router()
-app.use('/api', apiRoutes)//通过路由请求数据
-
-///
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
 
@@ -52,17 +43,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {
       poll: config.dev.poll,
-    },
-    //添加mock接口数据
-    before(app) {
-     app.get('/api/goods', (req, res) => {
-       res.json({
-         errno: 0,
-         data: goods
-       })//接口返回json数据，上面配置的数据appData就赋值给data请求后调用
-     })
-   }
-    ////
+    }
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -113,16 +94,18 @@ module.exports = new Promise((resolve, reject) => {
     }
   })
 })
-////
-var jsonServer = require('json-server') //引入文件
-var apiServer = jsonServer.create(); //创建服务器
-var apiRouter = jsonServer.router('static/mock/db.json') //引入json 文件 ，这里的地址就是你json文件的地址，我再static下的建立了一个文件夹mock，然后把json文件放在里面
-var middlewares = jsonServer.defaults(); //返回JSON服务器使用的中间件。
+
+/*----------------jsonServer---------*/
+/*引入json-server*/
+const jsonServer = require('json-server')
+/*搭建一个server*/
+const apiServer = jsonServer.create()
+/*将db.json关联到server*/
+const apiRouter = jsonServer.router('static/db.json')
+const middlewares = jsonServer.defaults()
 apiServer.use(middlewares)
-apiServer.use('/api',apiRouter)
-apiServer.listen( 9527 ,function(){ //json服务器端口:9527
-  console.log('JSON Server is running')  //json server成功运行会在git bash里面打印出'JSON Server is running'
+apiServer.use(apiRouter)
+/*监听端口*/
+apiServer.listen(3000, () => {
+  console.log('JSON Server is running')
 })
-
-
-////

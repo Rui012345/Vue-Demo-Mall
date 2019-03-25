@@ -1,19 +1,20 @@
 {
-  "likesList":[
+  "login": {
+    "username":"rui012345",
+    "userId":12345
+  },
+  "likesList": [
     {
-      "title": "针织衫",
-      "url": "/sfjw/dfs",
-      "hot":false
+      "title": "和次元酱一起穿上美美哒的汉服过中秋吧!",
+      "url": "https://headline.taobao.com/feed/feedDetail.htm?spm=a21aq.7719463.1998565035.7.3213627833PwM7&id=209198790781&columnId=25"
     },
     {
-        "title": "蛋糕裙",
-        "url": "/sfjw/dfs",
-        "hot":true
+      "title": "气质不仅重要，这样穿让你职场尽显女王范",
+      "url": "https://headline.taobao.com/feed/feedDetail.htm?spm=a21aq.7719463.1998565035.14.3213627833PwM7&id=2249205&columnId=25"
     },
     {
-        "title": "百褶裙",
-        "url": "/sfjw/dfs",
-        "hot":true
-      }
+      "title": "拒绝雷同，PONY从征服街头开始",
+      "url": "https://headline.taobao.com/feed/feedDetail.htm?spm=a21aq.7719463.1998565035.35.3213627833PwM7&id=202071511985&columnId=9"
+    }
   ]
 }

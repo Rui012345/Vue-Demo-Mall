@@ -19,8 +19,7 @@
         <h3>猜你喜欢</h3>
         <ul>
           <li v-for="like in likesList">
-            <a :href="like.url">{{ like.title }}</a>
-            <span v-if="like.hot" class="hot-tag">hot</span>
+            <a :href="like.url" class="likeitem">{{ like.title }}</a>
           </li>
         </ul>
       </div>
@@ -58,7 +57,7 @@ export default {
   created:function(){
     this.$http.get('api/likesList')
     .then((res) => {//箭头函数，this为当前代码环境下的this,而不是执行环境的this
-      this.likesList = res.data
+      this.likesList = res.body
     },(err) => {
       console.log("this is an error")
     })
@@ -203,34 +202,39 @@ body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, fo
 }
 .index-left{
   width:20%;
-  background-color: #000;
-  opacity: 0.82;
+  background-color: #fff;
+  opacity: 0.8;
   color:#fff;
+  border:1px solid #ff5000;
 }
 .index-left-block{
   text-indent :20px;
 }
 .index-left ul{
   padding: 10px 0px 10px 20px;
-
+  color:#666;
 }
 .index-left li{
   margin-bottom: 10px;
   list-style: none;
   cursor: pointer;
+  padding: 3px 0px 3px 0px;
+}
+h4{
+  color: #555;
 }
 h3{
-  background-color:#1fdd88;
+  background-color:#ff5000;
   padding: 10px 0px;
   letter-spacing:2px;
   margin-bottom: 10px;
 }
-.index-left-block li a{
+li a{
   text-decoration: none;
-  color: #fff;
+  color: #333;
 }
 .index-left li:hover{
-  background-color:#1fdd88;
+  background-color:#ffe4dc;
 }
 .hr{
   border-bottom:1px solid #eee;
@@ -246,6 +250,16 @@ h3{
   font-size:0.5em;
   vertical-align:super;
 }
+.likeitem{
+  text-indent: 0px;
+  display: inline-block;
+  width:80%;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+
+}
+
 .index-right{
   width: 80%;
   margin-left:15px;
@@ -279,6 +293,7 @@ h3{
   margin-top: 20px;
   background-color:#fff;
   padding:20px;
+  border:1px solid #ddd;
 }
 .index-board-item-inner{
   padding-left: 100px;
@@ -297,7 +312,7 @@ h3{
 }
 
 .button{
-  background-color:#1fdd88;
+  background-color:#ff5000;
   letter-spacing: 2px;
   float: right;
   text-indent:0;

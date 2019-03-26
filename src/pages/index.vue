@@ -33,13 +33,13 @@
         <div class="index-board-item" v-for="(item,index) in boardList"
         :class="[{'line-last':index%2!==0},
         'index-board-'+item.id]">
-          <div class="index-board-item-inner">
+          <a class="index-board-item-inner" :href="item.url">
             <h4>{{ item.title }}</h4>
             <p>{{ item.description }}</p>
-            <div class="index-board-button">
-              <a href="" class="button">点击进入</a>
-            </div>
-          </div>
+            <!-- <div class="index-board-button">
+              <a :href="item.url" class="button">点击进入</a>
+            </div> -->
+          </a>
         </div>
       </div>
     </div>
@@ -52,8 +52,7 @@ export default {
   components:{//引入子组件
     SlideShow
   },
-  //组件创建完毕，生命周期created
-  //组件创建完毕，生命周期promise,this.$http.post为promise对象，请求成功回调，请求失败的回调
+  //组件创建完毕，生命周期created promise,this.$http.post为promise对象，请求成功回调，请求失败的回调
   created:function(){
     this.$http.get('api/likesList')
     .then((res) => {//箭头函数，this为当前代码环境下的this,而不是执行环境的this
@@ -69,60 +68,76 @@ export default {
   //   }
   // },
   data(){
-    // ['女上装','裙装/套装','裤装','女鞋']，['男士外套','男式T恤','男士衬衫','男士裤装']
     return{
       slideSpeed:2000,
       slides:[
         {
           src:require('../assets/slide1.jpg'),
-          title:"男人帮特色",
-          href:'detail/ananly'
+          title:"腔调男人帮特色",
+          href:'detail/pinpai'
         },
         {
           src:require('../assets/slide2.jpg'),
           title:"女神养成计划",
-          href:'detail/ananlyss'
+          href:'detail/zuopin'
         },
         {
           src:require('../assets/slide3.jpg'),
           title:"有腔调的品味",
-          href:'detail/ananlyss'
+          href:'detail/xinpin'
         }
       ],
       boardList:[
+        {
+          title:"今日热卖",
+          description:"时尚应该是种解脱，而不是束缚。",
+          url:"detail",
+          id:'hotproducts'
+        },
+        {
+          title:"女神新衣",
+          description:"优雅并不是耀眼夺目，而是被人铭记。优雅并不是耀眼夺目，而是被人铭记。优雅并不是耀眼夺目，而是被人铭记。",
+          id:'lady',
+          url:"detail",
+        },
+        {
+          title:"男人帮",
+          description:"人靠衣装，落难对社会有很少或者几乎没有影响力。",
+          id:'gentleman',
+          url:"detail"
+        },
+        {
+          title:"有腔调",
+          description:"至简才是王道。",
+          id:'special',
+          url:"detail",
+        },
       {
         title:"今日热卖",
         description:"时尚应该是种解脱，而不是束缚。",
+        url:"detail",
         id:'hotproducts'
-      },{
+      },
+      {
         title:"女神新衣",
         description:"优雅并不是耀眼夺目，而是被人铭记。优雅并不是耀眼夺目，而是被人铭记。优雅并不是耀眼夺目，而是被人铭记。",
-        id:'lady'
-      },{
+        id:'lady',
+        url:"detail",
+      },
+      {
         title:"男人帮",
         description:"人靠衣装，落难对社会有很少或者几乎没有影响力。",
-        id:'gentleman'
-      },{
+        id:'gentleman',
+        url:"detail"
+      },
+      {
         title:"有腔调",
         description:"至简才是王道。",
-        id:'special'
+        id:'special',
+        url:"detail",
       }
       ],
-      likesList:'',////!!!!!!!!!!!!
-      // likesList:[
-      // {
-      //   title:"针织衫",
-      //   url:""
-      // },
-      // {
-      //   title:"女式衬衫",
-      //   url:"",
-      // },
-      // {
-      //   title:"半身裙",
-      //   url:""
-      // }
-      // ],
+      likesList:'',
       productList:{
         woman:{
           title:"女装",
@@ -208,14 +223,16 @@ body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, fo
   border:1px solid #ff5000;
 }
 .index-left-block{
-  text-indent :20px;
+    text-indent :20px;
 }
 .index-left ul{
-  padding: 10px 0px 10px 20px;
+  padding: 10px 0px 10px 0px;
   color:#666;
 }
 .index-left li{
-  margin-bottom: 10px;
+  display:block;
+  height: 30px;
+  line-height: 30px;
   list-style: none;
   cursor: pointer;
   padding: 3px 0px 3px 0px;
@@ -229,12 +246,14 @@ h3{
   letter-spacing:2px;
   margin-bottom: 10px;
 }
-li a{
+.index-left li a{
   text-decoration: none;
   color: #333;
+  display: inline-block;
 }
-.index-left li:hover{
+.index-left li:hover {
   background-color:#ffe4dc;
+
 }
 .hr{
   border-bottom:1px solid #eee;
@@ -257,7 +276,6 @@ li a{
   overflow: hidden;
   text-overflow:ellipsis;
   white-space: nowrap;
-
 }
 
 .index-right{
@@ -272,9 +290,10 @@ li a{
 .index-board-list{
   display: -webkit-flex;
   display: flex;
+  align-items: center;
   flex-direction:row;
   flex-wrap: wrap;
-  justify-content:space-between;
+  justify-content: space-between ;
 }
 .index-board-hotproducts .index-board-item-inner{
   background:url('../assets/hotproducts.jpg') no-repeat;
@@ -295,11 +314,25 @@ li a{
   padding:20px;
   border:1px solid #ddd;
 }
-.index-board-item-inner{
-  padding-left: 100px;
-  padding-bottom: 20px;
-  width: 70%;
+.index-board-item:hover{
+  border:1px solid #f55000;
+  cursor: pointer;
 }
+.index-board-item:hover a{
+  text-decoration: none;
+}
+.index-board-item:hover h4{
+  text-decoration: none;
+  color: #f55000;
+}
+
+.index-board-item-inner {
+  padding-left: 200px;
+  padding-bottom: 150px;
+  display: block;
+  color: #555;
+}
+
 .index-board-item-inner h4,p{
   overflow: hidden;
   white-space: nowrap;

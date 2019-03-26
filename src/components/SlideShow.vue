@@ -17,7 +17,7 @@
     <ul class="slide-page" >
       <li @click="goto(preIndex)">&lt;</li>
       <li v-for="(item,index) in slides" @click="goto(index)">
-        <a href="" :class="{on:index == nowIndex}">{{index + 1}}</a>
+        <a :class="{on:index == nowIndex}">{{index + 1}}</a>
       </li>
       <li @click="goto(nextIndex)">&gt;</li>
     </ul>

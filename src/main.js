@@ -3,7 +3,10 @@
 import Vue from 'vue'
 import Layout from './components/layout'
 import IndexPage from './pages/index'
-
+import DetailPage from './pages/detail'
+import DetailXinPin from './pages/detail/xinpin'
+import DetailPinPai from './pages/detail/pinpai'
+import DetailZuoPin from './pages/detail/zuopin'
 //引入自定义组件SlideShow
 import SlideShow from './components/SlideShow.vue'
 
@@ -18,7 +21,28 @@ let router = new VueRouter({
 	routes:[
 		{//映射表
 			path:'/',
-			component:IndexPage//根目录,router-view承载index内容放在layout中
+			component:IndexPage//IndexPage根目录,router-view承载index内容放在layout中
+		},
+		{//映射表
+			path:'/detail',
+			component:DetailPage,
+			redirect: '/detail/pinpai',
+						// redirect: '/detail/analysis',
+			children:[
+				{
+					path:'pinpai',
+					component:DetailPinPai
+				},
+				{
+					path:'zuopin',
+					component:DetailZuoPin
+				},
+				{
+					path:'xinpin',
+					component:DetailXinPin
+				}
+
+			]
 		}
 	]
 

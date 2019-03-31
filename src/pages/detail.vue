@@ -30,27 +30,26 @@ export default {
     return{
       productList:[
         {
+          title:"新品",
+          path:'xinpin'
+        },
+        {
           title:"品牌库",
           path:"pinpai"
         },
         {
           title:"作品集",
           path:"zuopin"
-        },
-        {
-          title:"新品",
-          path:'xinpin'
         }],
         imgMap:{
-          "/detail/pinpai":require('../assets/pinpai.jpg'),
-          "/detail/zuopin":require('../assets/zuopin.jpg'),
           "/detail/xinpin":require('../assets/xinpin.jpg'),
+          "/detail/pinpai":require('../assets/pinpai.jpg'),
+          "/detail/zuopin":require('../assets/zuopin.jpg')
         }
     }
   },
   computed:{
       productIcon(){
-        console.log(this.$route.path)
         return this.imgMap[this.$route.path]
       }
     }

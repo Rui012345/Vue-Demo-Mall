@@ -5,12 +5,12 @@
         <img src="../../assets/xinpin/xinpintitle.jpg" alt="新品">
       </div>
       <div class="content-items">
-            <a :href="item.buysrc" v-for="item in XinPinProducts" class="item-product">
+            <a :href="'/'+item.buysrc" v-for="item in XinPinProducts" class="item-product">
               <img :src="item.imgsrc" :alt="item.name">
-              <span>{{ item.name }}</span>
-              <span>已售{{ item.num }}件</span>
-              <span>￥{{ item.price }}</span>
-              <img src="../../assets/xinpin/buybtn.jpg" alt="立即购买">
+              <span class="itemname">{{ item.name }}</span>
+              <span>已售{{ item.salenum }}件</span>
+              <span>￥{{ item.cprice }}</span>
+              <img class="btn" src="../../assets/xinpin/buybtn.jpg" alt="立即购买">
             </a>
       </div>
     </div>
@@ -22,76 +22,96 @@ export default {
     return{
       XinPinProducts:[
         {
-          name:"李希侃同款 黑眼睛 棉袜短袜",
-          imgsrc:require("../../assets/xinpin/xinpinitem1.jpg"),
-          buysrc:'https://item.taobao.com/item.htm?spm=a211er.10486418.884011.1.50071be1r6PWjW&id=549143565970&scm=1007.12144.81309.78914_0_0&pvid=82de9664-9b92-4898-812d-dcb078be6428&utparam=%7B%22x_hestia_source%22%3A%2278914%22%2C%22x_object_type%22%3A%22item%22%2C%22x_mt%22%3A8%2C%22x_src%22%3A%2278914%22%2C%22x_pos%22%3A1%2C%22x_pvid%22%3A%2282de9664-9b92-4898-812d-dcb078be6428%22%2C%22x_object_id%22%3A549143565970%7D',
-          num:90,
-          price:299,
+          name:"设计师原创品牌碎花无袖吊带不对称连衣裙",
+          imgsrc:require("../../assets/xinpin/xinpinitem0.jpg"),
+          buysrc:'product',
+          cprice:89,
+          sprice:299,
+          salenum:999,
+          ratenum:34445
         },
         {
-          name:"李希侃同款 黑眼睛 棉袜短袜",
-          imgsrc:require("../../assets/xinpin/xinpinitem2.jpg"),
-          buysrc:'https://item.taobao.com/item.htm?spm=a211er.10486418.884011.1.50071be1r6PWjW&id=549143565970&scm=1007.12144.81309.78914_0_0&pvid=82de9664-9b92-4898-812d-dcb078be6428&utparam=%7B%22x_hestia_source%22%3A%2278914%22%2C%22x_object_type%22%3A%22item%22%2C%22x_mt%22%3A8%2C%22x_src%22%3A%2278914%22%2C%22x_pos%22%3A1%2C%22x_pvid%22%3A%2282de9664-9b92-4898-812d-dcb078be6428%22%2C%22x_object_id%22%3A549143565970%7D',
-          num:900,
-          price:299,
+          name:"独立设计可爱卡通圆形mini斜挎包袜",
+          imgsrc:require("../../assets/xinpin/xinpinitem4.jpg"),
+          buysrc:'product',
+          cprice:89,
+          sprice:299,
+          salenum:999,
+          ratenum:45355
 
         },
         {
-          name:"李希侃同款 黑眼睛 棉袜短袜",
+          name:"原创气质范儿春秋小丝巾",
           imgsrc:require("../../assets/xinpin/xinpinitem3.jpg"),
-          buysrc:'https://item.taobao.com/item.htm?spm=a211er.10486418.884011.1.50071be1r6PWjW&id=549143565970&scm=1007.12144.81309.78914_0_0&pvid=82de9664-9b92-4898-812d-dcb078be6428&utparam=%7B%22x_hestia_source%22%3A%2278914%22%2C%22x_object_type%22%3A%22item%22%2C%22x_mt%22%3A8%2C%22x_src%22%3A%2278914%22%2C%22x_pos%22%3A1%2C%22x_pvid%22%3A%2282de9664-9b92-4898-812d-dcb078be6428%22%2C%22x_object_id%22%3A549143565970%7D',
-          num:9000,
-          price:299,
+          buysrc:'',
+          cprice:89,
+          sprice:299,
+          salenum:999,
+          ratenum:45355
         },
         {
-          name:"李希侃同款 黑眼睛 棉袜短袜",
+          name:"独立设计可爱卡通圆形mini斜挎包袜",
           imgsrc:require("../../assets/xinpin/xinpinitem4.jpg"),
           buysrc:'',
-          num:450,
-          price:299,
+          cprice:89,
+          sprice:299,
+          salenum:999,
+          ratenum:45355
         },
         {
-          name:"李希侃同款 黑眼睛 棉袜短袜",
-          imgsrc:require("../../assets/xinpin/xinpinitem1.jpg"),
+          name:"设计师原创品牌碎花无袖吊带不对称连衣裙",
+          imgsrc:require("../../assets/xinpin/xinpinitem0.jpg"),
           buysrc:'',
-          num:880,
-          price:899,
+          cprice:89,
+          sprice:299,
+          salenum:999,
+          ratenum:8888
         },
         {
-          name:"李希侃同款 黑眼睛 棉袜短袜",
-          imgsrc:require("../../assets/xinpin/xinpinitem1.jpg"),
-          buysrc:'https://item.taobao.com/item.htm?spm=a211er.10486418.884011.1.50071be1r6PWjW&id=549143565970&scm=1007.12144.81309.78914_0_0&pvid=82de9664-9b92-4898-812d-dcb078be6428&utparam=%7B%22x_hestia_source%22%3A%2278914%22%2C%22x_object_type%22%3A%22item%22%2C%22x_mt%22%3A8%2C%22x_src%22%3A%2278914%22%2C%22x_pos%22%3A1%2C%22x_pvid%22%3A%2282de9664-9b92-4898-812d-dcb078be6428%22%2C%22x_object_id%22%3A549143565970%7D',
-          num:9000,
-          price:299,
+          name:"设计师原创品牌碎花无袖吊带不对称连衣裙",
+          imgsrc:require("../../assets/xinpin/xinpinitem0.jpg"),
+          buysrc:'product',
+          cprice:89,
+          sprice:299,
+          salenum:999,
+          ratenum:59406
         },
         {
-          name:"李希侃同款 黑眼睛 棉袜短袜",
-          imgsrc:require("../../assets/xinpin/xinpinitem2.jpg"),
-          buysrc:'https://item.taobao.com/item.htm?spm=a211er.10486418.884011.1.50071be1r6PWjW&id=549143565970&scm=1007.12144.81309.78914_0_0&pvid=82de9664-9b92-4898-812d-dcb078be6428&utparam=%7B%22x_hestia_source%22%3A%2278914%22%2C%22x_object_type%22%3A%22item%22%2C%22x_mt%22%3A8%2C%22x_src%22%3A%2278914%22%2C%22x_pos%22%3A1%2C%22x_pvid%22%3A%2282de9664-9b92-4898-812d-dcb078be6428%22%2C%22x_object_id%22%3A549143565970%7D',
-          num:9000,
-          price:299,
+          name:"独立设计可爱卡通圆形mini斜挎包袜",
+          imgsrc:require("../../assets/xinpin/xinpinitem4.jpg"),
+          buysrc:'',
+          cprice:89,
+          sprice:299,
+          salenum:999,
+          ratenum:45
 
         },
         {
-          name:"李希侃同款 黑眼睛 棉袜短袜",
-          imgsrc:require("../../assets/xinpin/xinpinitem3.jpg"),
-          buysrc:'https://item.taobao.com/item.htm?spm=a211er.10486418.884011.1.50071be1r6PWjW&id=549143565970&scm=1007.12144.81309.78914_0_0&pvid=82de9664-9b92-4898-812d-dcb078be6428&utparam=%7B%22x_hestia_source%22%3A%2278914%22%2C%22x_object_type%22%3A%22item%22%2C%22x_mt%22%3A8%2C%22x_src%22%3A%2278914%22%2C%22x_pos%22%3A1%2C%22x_pvid%22%3A%2282de9664-9b92-4898-812d-dcb078be6428%22%2C%22x_object_id%22%3A549143565970%7D',
-          num:9000,
-          price:299,
+          name:"设计师原创品牌碎花无袖吊带不对称连衣裙",
+          imgsrc:require("../../assets/xinpin/xinpinitem0.jpg"),
+          buysrc:'',
+          cprice:89,
+          sprice:299,
+          salenum:999,
+          ratenum:455
         },
         {
-          name:"李希侃同款 黑眼睛 棉袜短袜",
+          name:"独立设计可爱卡通圆形mini斜挎包",
           imgsrc:require("../../assets/xinpin/xinpinitem4.jpg"),
           buysrc:'',
-          num:9000,
-          price:299,
+          cprice:89,
+          sprice:299,
+          salenum:999,
+          ratenum:455
         },
         {
-          name:"李希侃同款 黑眼睛 棉袜短袜",
-          imgsrc:require("../../assets/xinpin/xinpinitem1.jpg"),
+          name:"设计师原创品牌碎花无袖吊带不对称连衣裙",
+          imgsrc:require("../../assets/xinpin/xinpinitem0.jpg"),
           buysrc:'',
-          num:9000,
-          price:299,
+          cprice:89,
+          sprice:299,
+          salenum:999,
+          ratenum:888
         }
       ]
     }
@@ -135,11 +155,17 @@ body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, fo
   display: block;
   width: 20%;
 }
+
 .content-items .item-product{
  text-decoration: none;
  overflow: hidden;
  padding-bottom: 20px;
 }
+.content-items .btn{
+  max-width: 100px;
+  max-height: 40px;
+}
+
 span{
   display: block;
   color:#555;
@@ -149,6 +175,14 @@ span{
 .item-product:hover span{
   text-decoration: none;
   color:#ff5000;
+}
+.itemname{
+  font-size: 16px;
+  display: inline-block;
+  width: 220px;
+  white-space: nowrap;
+  overflow: hidden;;
+  text-overflow: ellipsis;
 }
 
 

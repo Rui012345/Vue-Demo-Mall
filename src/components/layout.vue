@@ -152,9 +152,9 @@ body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, fo
 }
 .app-content{
   margin-top:0px;
-  padding-bottom:100px;
   height: auto;
   background: #eee;
+  padding-bottom: 100px;
 }
 .app-footer{
   height: 60px;

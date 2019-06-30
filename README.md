@@ -2,6 +2,10 @@
 
 > A Vue.js project
 
+<p align='center'>
+<img src='images/1.jpg' title='images' style='max-width:600px'></img>
+</p>
+
 ## Build Setup
 
 ``` bash

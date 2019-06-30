@@ -1,10 +1,10 @@
 # vue-demo-Mall
 
-> A Vue.js project
+> A Vue.js project 
 
-<p align='center'>
-<img src='images/1.jpg' title='images' style='max-width:600px'></img>
-</p>
+##完整效果（https://github.com/Rui012345/Vue-Demo-Mall/blob/master/demo.gif）
+![img](https://github.com/Rui012345/Vue-Demo-Mall/blob/master/demo.gif)
+
 
 ## Build Setup
 

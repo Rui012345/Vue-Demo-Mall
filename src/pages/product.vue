@@ -41,12 +41,16 @@
               <option value="山东">山东</option>
               <option value="江苏">江苏</option>
               <option value="上海">上海</option>
+              <option value="陕西">陕西</option>
+              <option value="山东">山东</option>
+              <option value="江苏">江苏</option>
+              <option value="上海">上海</option>
             </select>
           </div>
           <div class="buy-options-size buy-options-margin">
             <span class="options-title">尺寸：</span>
             <ul>
-              <li v-for="sizeitem in productDetails.size">{{sizeitem}}</li>
+              <li v-for="sizeitem in productDetails.size" >{{sizeitem}}</li>
             </ul>
           </div>
           <div class="buy-options-size buy-options-margin">

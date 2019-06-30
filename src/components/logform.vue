@@ -14,7 +14,7 @@
       <div class="g-form-line">
         <span class="g-form-label">密码：</span>
         <div class="g-form-input">
-          <input type="text"    v-model="passwordModel" placeholder="最少6位,包含字母数字">
+          <input type="password"    v-model="passwordModel" placeholder="最少6位,包含字母数字">
         </div>
         <span class="error">{{pwdError.errorText}}</span>
       </div>
@@ -158,6 +158,9 @@ body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, fo
 }
 input[type="text"]{
   padding: 6px 10px;
+}
+input[type="password"]{
+	padding:6px 10px;
 }
 .error{
   display: inline-block;
